@@ -1,0 +1,28 @@
+{
+  "name": "node-blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev":"node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mypanda/node-blog.git"
+  },
+  "author": "mypanda",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mypanda/node-blog/issues"
+  },
+  "homepage": "https://github.com/mypanda/node-blog#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cookies": "^0.6.1",
+    "express": "^4.14.0",
+    "markdown": "^0.5.0",
+    "mongoose": "^4.5.7",
+    "swig": "^1.4.2"
+  }
+}

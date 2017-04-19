@@ -1,0 +1,15 @@
+header{
+  height: 200px;
+  background-image: url('/public/images/header_bg_01.jpg');
+  background-repeat: repeat-x;
+  background-position: -25px 0;
+  -webkit-background-size: cover;
+  background-attachment:fixed;
+  background-size: 100% 200px;
+}
+.articleInfo{
+  margin-bottom: 8px !important;
+}
+.borderBottom1{
+  border-bottom: 1px solid rgba(160,160,160,0.2);
+}

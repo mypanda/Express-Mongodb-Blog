@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="renderer" content="webkit">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>panda | 首页</title>
+	<script src="/public/js/jquery.min.js"></script>
+	<script src="/public/js/materialize.min.js"></script>
+	<script src="/public/js/index.js"></script>
+	<link rel="stylesheet" href="/public/css/materialize.min.css">
+	<link rel="stylesheet" href="/public/css/normalize.min.css">
+	<link rel="stylesheet" href="/public/css/icon.css">
+	<!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+	<link rel="stylesheet" href="/public/css/index.css">
+</head>
+<body class="grey lighten-5">
+	<!-- 头部信息 -->
+	<header></header>
+	<!-- 头部信息 -->
+	<!-- 导航部分 -->
+	<nav class="cyan">
+		<div class="nav-wrapper container">
+			{% if category == '' %}
+			<a href="/" class="brand-logo black-text">Panda</a>
+			{% else %}
+			<a href="/" class="brand-logo white-text">Panda</a>
+			{% endif %}
+			<ul id="nav-mobile" class="right hide-on-med-and-down">
+				{% for cate in categories%}
+				{% if category == cate.id %}
+				<li class="active"><a href="/?category={{cate.id}}" class="white-text">{{cate.name}}</a></li>
+				{% else %}
+				<li><a href="/?category={{cate.id}}" class="white-text">{{cate.name}}</a></li>
+				{% endif %}
+				{% endfor %}
+			</ul>
+		</div>
+	</nav>
+	<!-- 导航部分 -->
+	<!-- 主体部分 -->
+	<section class="container main">
+		<div class="row">
+			<div class="col s12 m8">
+				{% block content %}{% endblock%}
+			</div>
+			<div class="col s12 m4">
+				{% if userInfo._id %}
+				<div class="card-panel" id="userInfo">
+					<div class="row">
+						<div class="col s12">
+							<h5>用户信息</h5>
+						</div>
+					</div>
+					<p id="username" class="blue-text">{{ userInfo.username }}</p>
+						{% if userInfo.isAdmin %}
+							<p id="info">你好，管理员！<a href="/admin">进入管理后台</a></p>
+						{% else %}
+							<p>你好，欢迎光临我的博客!</p>
+						{% endif %}
+					<p><a href="javascript:;" id="logout">退出!</a></p>
+				</div>
+				{% else %}
+				<div class="card-panel" id="login">
+					<form action="#">
+						<div class="row borderBottom1">
+							<div class="col s12">
+								<h5>登录</h5>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<i class="material-icons prefix">account_circle</i>
+								<input type="text" id="username" class="validate" name="username">
+								<label for="username">用户名</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<i class="material-icons prefix">lock</i>
+								<input type="password" id="password" class="validate" name="password">
+								<label for="password">密码</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<button class="btn waves-effect waves-light cyan col s12" type="submit">登录
+									<!-- <i class="material-icons right">send</i> -->
+								</button>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<a href="javascript:;" class="btn waves-effect waves-light blue-grey lighten-3  col s12">注册</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<p class="warning red-text"></p>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="card-panel" id="register">
+					<form action="#">
+						<div class="row borderBottom1">
+							<div class="col s12">
+								<h5>注册</h5>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<input type="text" id="username" class="form-control" name="username">
+								<label for="username">用户名</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<input type="password" id="password" class="form-control" name="password">
+								<label for="password">密码</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<input type="password" id="repassword" class="form-control" name="repassword">
+								<label for="repassword">确认密码</label>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<button class="btn waves-effect waves-light cyan col s12" type="submit">注册
+									<!-- <i class="material-icons right">send</i> -->
+								</button>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<a href="javascript:;" class="btn waves-effect waves-light blue-grey lighten-3  col s12">登录</a>
+							</div>
+						</div>
+						<div class="row">
+							<div class="input-field col s12">
+								<p class="warning red-text"></p>
+							</div>
+						</div>
+					</form>
+				</div>
+				{% endif %}
+				<div class="card-panel" id="showBox">
+					<div class="row borderBottom1">
+						<div class="col s12">
+							<h5>社区信息</h5>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<h6><a href="">嘻嘻</a></h6>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- 主体部分 -->
+	<!-- 底部部分 -->
+	<footer class="page-footer cyan">
+		<div class="container">
+			<div class="row">
+			<div class="col l6 s12 m12">
+				<h5 class="white-text">Footer Content</h5>
+				<p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+			</div>
+			<div class="col l4 offset-l2 s12">
+				<h5 class="white-text">Links</h5>
+				<ul>
+					<li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+					<li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+					<li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>
+					<li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>
+				</ul>
+			</div>
+			</div>
+		</div>
+		<div class="footer-copyright">
+			<div class="container">
+				© 2014 Copyright Text
+				<a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+			</div>
+		</div>
+	</footer>
+	<!-- 底部部分 -->
+</body>
+</html>

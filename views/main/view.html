@@ -1,0 +1,67 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="card">
+	<div class="card-content white">
+		<span class="card-title center">{{content.title}}</span>
+		<p class="articleInfo center">作者:<a href="jvascript:;">{{content.user.username}}</a> - 时间:<a href="jvascript:;">{{content.addTime|date('Y年m月d日 H:i:s',-8*60)}}</a> - 阅读:<a href="jvascript:;">{{content.views}}</a> - 评论:<a href="jvascript:;">{{content.comments.length}}</a>
+		</p>
+		<dfn>{{content.content}}</dfn>
+	</div>
+</div>
+<div class="card">
+	<div class="card-content white">
+		<div class="row">
+			<div class="col s6 m6">
+				<span class="card-title left-align">评论</span>
+			</div>
+			<div class="col s6 m6">
+				<p>&nbsp;</p>
+				<span class="right">一共有 <em id="messageCount">0</em> 评论</span>
+			</div>
+		</div>
+		{% if userInfo._id %}
+		<div class="row">
+			<div class="col s12 m12">
+				<p>admin</p>
+			</div>
+		</div>
+		<div class="row">
+			<form action="" method="post" class="s12">
+				<div class="input-field col s10">
+					<textarea id="messageContent" class="materialize-textarea s10 m10" data-length="120"></textarea>
+					<label for="conpoaaaaaaaaaaaaa">评论</label>
+					<input type="hidden" id="contentId" value="{{content.id}}">
+				</div>
+				<div class="input-field col s2" style="top:25px">
+					<input type="button" id="messageBtn" class="waves-effect waves-light btn-large col s12 m12" value="提交">
+				</div>
+			</form>
+		</div>
+		{% else %}
+		<div class="row">
+			<div class="col s12 m12">
+				<input type="button" class="waves-effect waves-light btn col s12 m12" value="你还没有登录，请先登录！">
+			</div>
+		</div>
+		{% endif %}
+		<div class="row" id='noComments'>
+			
+		</div>
+		<div class="row">
+			<div class="col s12 m12">
+				<ul class="collection" id="messageList">
+				</ul>	
+			</div>		
+		</div>
+		<div class="row" id="pager">
+			<ul class="pager col s12 m12">
+				<li class="col s4 m4 previous"><a href="javascript:;">上一页</a></li>
+				<li class="col s4 m4 center-align"></li>
+				<li class="col s4 m4 right-align next"><a href="javascript:;">下一页</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<script src="/public/js/comment.js"></script>
+{% endblock %}
