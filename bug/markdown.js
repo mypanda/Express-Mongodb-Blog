@@ -221,7 +221,7 @@ Markdown.prototype.split_blocks = function splitBlocks( input, startLine ) {
 
   */
   var previousStr = '';
-  var new_line_no;
+  var new_line_no = 0;
   var pointRegEnd = new RegExp('(```)$');
   var pointRegStart = new RegExp('^(```)');
   while ( ( m = re.exec(input) ) !== null ) {
@@ -230,20 +230,46 @@ Markdown.prototype.split_blocks = function splitBlocks( input, startLine ) {
       re.lastIndex--;
     }
 
+    console.log(m[1]);
+    console.log('++++++++++++++++++++++++');
+    //先把前^(```) && (```)&
+    if (pointRegStart.test(m[1]) && pointRegEnd.test(m[1])) {
+      previousStr = '';
+      blocks.push( mk_block( m[1], m[2], line_no ) );
+      line_no += count_lines( m[0] );
+      continue;
+    };
+
+    //前^(```)
     if (pointRegStart.test(m[1]) && !(pointRegEnd.test(m[1]))) {
       previousStr = m[1] + m[2];
       new_line_no = line_no;
       continue;
     };
 
-    if (pointRegEnd.test(m[1])) {
+
+    if (previousStr && !(pointRegStart.test(m[1])) && !(pointRegEnd.test(m[1]))) {
+      previousStr = previousStr + m[1] + m[2];
+      new_line_no = line_no;
+      continue;
+    };
+
+    if (!(pointRegStart.test(m[1])) && pointRegEnd.test(m[1])) {
       m[1] = previousStr + m[1];
+      previousStr = '';
       line_no = new_line_no + line_no;
     };
+
+    // if (pointRegEnd.test(m[1])) {
+    //   m[1] = previousStr + m[1];
+    //   previousStr = '';
+    //   line_no = new_line_no + line_no;
+    // };
+
     blocks.push( mk_block( m[1], m[2], line_no ) );
     line_no += count_lines( m[0] );
   }
-
+  
   return blocks;
 };
 
