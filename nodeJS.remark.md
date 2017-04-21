@@ -1264,3 +1264,13 @@ app.listen(8081);
 		* req.cookies get,set方法，设置获取cookies
 * app.use()
 	* 相当于每次请求一个网页都会执行的函数，constructor构造函数
+
+#### swig的html转义
+
+```
+//27.swig是默认HTML转义，值 `true, false, "html", "js"`
+swig.setDefaults({ autoescape: false });
+```
+* [Swig/Node.js: 字符串转义支持](https://www.mgenware.com/blog/?p=2576)
+* [swig的html转义 - stackoverflow](http://stackoverflow.com/questions/21806356/what-is-auto-escape-used-for-in-swig-templating-for-node-js)
+* [swig使用指南](http://www.cnblogs.com/elementstorm/p/3142644.html)

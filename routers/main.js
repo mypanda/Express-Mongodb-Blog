@@ -4,7 +4,7 @@ var express = require('express');
 var Category = require('../models/Category');
 //11.引入内容model
 var Content = require('../models/content');
-
+var markdown = require( "markdown" ).markdown;
 //2.创建路由
 var router = express.Router();
 
@@ -96,8 +96,10 @@ router.get('/view',function(req,res,next) {
 
 		//17。增加阅读数量
 		content.views++;
-		content.save();
-
+		return content.save();
+	}).then(function() {
+		//markdown转html
+		data.content.content = markdown.toHTML(data.content.content);
 		res.render('main/view',data);
 	});
 });

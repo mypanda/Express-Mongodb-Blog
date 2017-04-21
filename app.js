@@ -21,6 +21,9 @@ app.engine('html',swig.renderFile);
 
 //11.是否设置缓存
 swig.setDefaults({cache:false});
+//27.默认的HTML是转义的,就是转化成html字符串,fasle会把html标签解析，，，
+//{% autoescape false %}{{content.content}}{% endautoescape %}指定不转义
+swig.setDefaults({ autoescape: true });
 
 //8.设置模板文件的放置目录
 app.set('views','./views');
