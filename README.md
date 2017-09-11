@@ -29,3 +29,13 @@
 
 #### v 1.0.3
 * 继续修复markdown正匹配问题
+
+#### v1.0.4
+
+* 一个完整版本
+
+![首页截图](./public/images/panda_index.png)
+
+![管理页截图](./public/images/panda_admin.png)
+
+![管理页截图1](./public/images/panda_admin2.png)
