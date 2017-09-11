@@ -3,7 +3,7 @@ var express = require('express');
 //8.引入分类model
 var Category = require('../models/Category');
 //11.引入内容model
-var Content = require('../models/content');
+var Content = require('../models/Content');
 var markdown = require( "markdown" ).markdown;
 //2.创建路由
 var router = express.Router();
